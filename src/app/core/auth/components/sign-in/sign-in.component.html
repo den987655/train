@@ -1,0 +1,57 @@
+
+  <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="form-login">
+    <h2 tuiText>Вход в систему</h2>
+
+<!--    <span>Email</span>-->
+    <label
+      tuiLabel
+      class="tui-space_bottom-4"
+    >
+      Email
+      <tui-input
+        formControlName="email"
+      >
+        Введите ваш email
+      </tui-input>
+
+      <tui-error
+        *ngIf="formSubmitted"
+        formControlName="email"
+        [error]="[] | tuiFieldError | async"
+      />
+    </label>
+
+    <label
+      tuiLabel
+      class="tui-space_bottom-4"
+    >
+      Password
+      <tui-input
+        formControlName="password"
+      >
+        Password*
+        <input
+          placeholder="Enter password here"
+          tuiTextfieldLegacy
+          type="password"
+        />
+      </tui-input>
+
+      <tui-error
+        *ngIf="formSubmitted"
+        formControlName="password"
+        [error]="[] | tuiFieldError | async"
+      />
+    </label>
+
+<p *ngIf="authService.authError$$">{{ authService.authError$$ | async }}</p>
+    <button
+      tuiButton
+      type="submit"
+      [disabled]="authForm.invalid"
+
+    >
+      Войти
+    </button>
+  </form>
+

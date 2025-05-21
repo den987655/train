@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+  height: 50px;
+}
+.header-link {
+  font-size: 20px;
+  font-weight: 600;
+}
