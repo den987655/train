@@ -1,4 +1,4 @@
-import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {provideHttpClient, withInterceptors, withInterceptorsFromDi} from '@angular/common/http';
 import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {provideRouter} from '@angular/router';
@@ -7,6 +7,7 @@ import {TuiRootModule} from '@taiga-ui/core';
 import {provideEventPlugins} from '@taiga-ui/event-plugins';
 
 import {routes} from './app.routes';
+import {tokenInterceptor} from './core/interseptors/token.interceptor';
 
 
 export const appConfig: ApplicationConfig = {
@@ -14,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimations(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptors([tokenInterceptor])),
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: CredentialsInterceptor,

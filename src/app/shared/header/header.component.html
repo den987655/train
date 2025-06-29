@@ -1,10 +1,22 @@
 
-<!--<a-->
-<!--  tuiLink-->
-<!--  [routerLink]="['']"-->
-<!--&gt;-->
-<!--  Home-->
-<!--</a>-->
+<a
+  class="header-link"
+  tuiLink
+  [routerLink]="['/']"
+>
+  Home
+</a>
+
+@if (isAuthenticated$ | async) {
+  <a
+    class="header-link"
+    tuiLink
+    (click)="logoutHandler()"
+
+  >
+    Log out
+  </a>
+} @else {
 <a
   class="header-link"
   tuiLink
@@ -17,12 +29,7 @@
   tuiLink
   [routerLink]="['sign-in']"
 >
-  Sign up
+  Sign in
 </a>
-<a
-  class="header-link"
-  tuiLink
-  [routerLink]="['/']"
->
-  Home
-</a>
+}
+

@@ -1,58 +1,77 @@
-<p>sign-up works!</p>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="form-login" >
+  <h2 tuiText>Регистрация пользователя</h2>
 
-<form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="form-login">
-  <h2 tuiText>Вход в систему</h2>
-
-  <!--    <span>Email</span>-->
-  <label
-    tuiLabel
-    class="tui-space_bottom-4"
-  >
-    Email
-    <tui-input
+<tui-textfield iconStart="@tui.mail">
+  <label tuiLabel>Email</label>
+    <input
       formControlName="email"
+      type="email"
+      tuiTextfield
     >
-      Введите ваш email
-    </tui-input>
+</tui-textfield>
 
-    <tui-error
-      *ngIf="formSubmitted"
-      formControlName="email"
-      [error]="[] | tuiFieldError | async"
-    />
-  </label>
+  <tui-error
+    *ngIf="formSubmitted"
+    formControlName="email"
+    [error]="[] | tuiFieldError | async"
+  />
+  <tui-error
+    *ngIf="authService.formErrors.email | async as error"
+    [error]="error"
+  />
 
-  <label
-    tuiLabel
-    class="tui-space_bottom-4"
-  >
-    Password
-    <tui-input
-      formControlName="password"
-    >
-      Password*
+<tui-textfield >
+  <label tuiLabel>Password*</label>
       <input
+        formControlName="password"
         placeholder="Enter password here"
-        tuiTextfieldLegacy
+        tuiTextfield
         type="password"
       />
-    </tui-input>
+  <tui-icon tuiPassword />
+</tui-textfield>
 
     <tui-error
       *ngIf="formSubmitted"
       formControlName="password"
       [error]="[] | tuiFieldError | async"
     />
-  </label>
 
-  <p *ngIf="authService.authError$$">{{ authService.authError$$ | async }}</p>
-  <button
-    tuiButton
-    type="submit"
-    [disabled]="authForm.invalid"
+  <tui-textfield>
+    <label tuiLabel>Password repeat</label>
+    <input
+      formControlName="passwordRepeat"
+      placeholder="Enter password repeat"
+      tuiTextfield
+      type="password"
+    />
+    <tui-icon tuiPassword />
+  </tui-textfield>
 
-  >
-    Войти
-  </button>
+    <tui-error
+      *ngIf="signUpForm.get('passwordRepeat')?.touched && signUpForm.errors?.['passwordMismatch']"
+      [error]="signUpForm.errors?.['passwordMismatch']?.message"
+    ></tui-error>
+  <tui-error
+    *ngIf="authService.formErrors.general | async as error"
+    [error]="error"
+  />
+
+
+  <div class="form-login__buttons">
+    <button
+      tuiButton
+      type="submit"
+      [disabled]="signUpForm.invalid"
+    >
+      Регистрация
+    </button>
+    <button
+      tuiButton
+      [routerLink]="['/sign-in']"
+    >
+      Войти
+    </button>
+  </div>
 </form>
 
