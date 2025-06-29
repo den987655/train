@@ -16,6 +16,13 @@
   >
     Log out
   </a>
+  <a
+    class="header-link"
+    tuiLink
+    [routerLink]="['profile']"
+  >
+    Profile
+  </a>
 } @else {
 <a
   class="header-link"
@@ -31,5 +38,6 @@
 >
   Sign in
 </a>
+
 }
 

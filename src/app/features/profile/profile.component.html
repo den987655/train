@@ -1,0 +1,37 @@
+
+  <h1>Profile</h1>
+  <span>Username: </span>
+  <button
+    tuiButton
+
+  >
+    Change password
+  </button>
+
+  <form [formGroup]="profileForm" class="form-profile">
+    <tui-textfield iconStart="@tui.mail">
+      <label tuiLabel>Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        tuiTextfield
+      >
+    </tui-textfield>
+    <tui-textfield iconStart="@tui.mail">
+      <label tuiLabel>Name</label>
+      <input
+        formControlName="email"
+        type="email"
+        tuiTextfield
+      >
+    </tui-textfield>
+  </form>
+
+  <button
+    class="header-link"
+    tuiButton
+    appearance="accent"
+    (click)="authService.logout()"
+  >
+    Log out
+  </button>
